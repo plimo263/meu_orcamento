@@ -27,6 +27,12 @@ class Spending implements ResourcePaid {
   @override
   String uid;
 
+  String? uidParcel;
+
+  int? parcel;
+
+  int? parcelTotal;
+
   Spending({
     required this.name,
     required this.category,
@@ -34,6 +40,9 @@ class Spending implements ResourcePaid {
     required this.dateRegister,
     required this.description,
     required this.uid,
+    this.uidParcel,
+    this.parcel,
+    this.parcelTotal,
   });
 
   /// Recupera a data de registro formatada em DD/MM/YY
@@ -62,6 +71,9 @@ class Spending implements ResourcePaid {
       'dateRegister': dateRegister.millisecondsSinceEpoch,
       'description': description,
       'uid': uid,
+      'uidParcel': uidParcel,
+      'parcel': parcel,
+      'parcelTotal': parcelTotal,
     };
   }
 
@@ -74,6 +86,10 @@ class Spending implements ResourcePaid {
           DateTime.fromMillisecondsSinceEpoch(map['dateRegister'] as int),
       description: map['description'] as String,
       uid: map['uid'] as String,
+      uidParcel: map['uidParcel'] != null ? map['uidParcel'] as String : null,
+      parcel: map['parcel'] != null ? map['parcel'] as int : null,
+      parcelTotal:
+          map['parcelTotal'] != null ? map['parcelTotal'] as int : null,
     );
   }
 
@@ -84,6 +100,6 @@ class Spending implements ResourcePaid {
 
   @override
   String toString() {
-    return 'Spending(name: $name, category: $category, value: $value, dateRegister: $dateRegister, description: $description, uid: $uid)';
+    return 'Spending(name: $name, category: $category, value: $value, dateRegister: $dateRegister, description: $description, uid: $uid, uidParcel: $uidParcel, parcel: $parcel, parcelTotal: $parcelTotal)';
   }
 }
